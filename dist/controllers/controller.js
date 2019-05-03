@@ -43,8 +43,8 @@ exports.addCategory = (req, res) => {
             // Check if children exist
             let childrenCategories = category_1.default.find({ id: req.body.childrenIds }, (err, childrenCategories) => {
                 const cIds = req.body.childrenIds;
-                console.log(cIds);
-                console.log(childrenCategories.length);
+                //console.log(cIds);
+                //console.log(childrenCategories.length)
                 // If all children exist, all children Id's will be in the database
                 if (cIds.length === childrenCategories.length) {
                     category.save((err) => {
