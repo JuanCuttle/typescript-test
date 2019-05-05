@@ -8,7 +8,7 @@ export let allCategories = (req: Request, res: Response) => {
             console.log(err.message)
             res.send(err)
         } else {
-            console.log("Success")
+            //console.log("Success")
             res.send(categories)
         }
     })
@@ -21,7 +21,7 @@ export let getCategory = (req: Request, res: Response) => {
             console.log(err.message)
             res.send(err)
         } else {
-            console.log("Success")
+            //console.log("Success")
             res.send(category)
         }
     })

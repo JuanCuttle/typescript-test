@@ -9,7 +9,7 @@ exports.allCategories = (req, res) => {
             res.send(err);
         }
         else {
-            console.log("Success");
+            //console.log("Success")
             res.send(categories);
         }
     });
@@ -22,7 +22,7 @@ exports.getCategory = (req, res) => {
             res.send(err);
         }
         else {
-            console.log("Success");
+            //console.log("Success")
             res.send(category);
         }
     });
