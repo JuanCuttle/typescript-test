@@ -1,7 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
-const uri = 'mongodb://127.0.0.1:27017/local';
+let dotenv = require('dotenv');
+dotenv.config();
+const { mongoURI } = require('./config');
+const uri = mongoURI; //'mongodb://127.0.0.1:27017/local';//process.env.mongoURI;
 mongoose.connect(uri, { useNewUrlParser: true }, (err) => {
     if (err) {
         console.log(err.message);

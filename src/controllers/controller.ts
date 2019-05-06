@@ -6,7 +6,7 @@ export let allCategories = (req: Request, res: Response) => {
     let categories = Category.find((err: any, categories: any) => {
         if (err){
             console.log(err.message)
-            res.send(err)
+            res.status(500).send(err)
         } else {
             //console.log("Success")
             res.send(categories)
@@ -19,7 +19,7 @@ export let getCategory = (req: Request, res: Response) => {
     let category = Category.find({id: req.params.categoryId}, (err: any, category: any) => {//findById(req.params.categoryId, (err: any, category: any) => {
         if (err){
             console.log(err.message)
-            res.send(err)
+            res.status(500).send(err)
         } else {
             //console.log("Success")
             res.send(category)
@@ -52,18 +52,18 @@ export let addCategory = (req: Request, res: Response) => {
                 if (cIds.length === childrenCategories.length){
                     category.save((err: any) => {
                         if (err){
-                            res.send(err)
+                            res.status(500).send(err)
                         } else {
                             //res.send(category)
                             res.send({'ok': true})
                         }
                     })  
                 } else {
-                    res.send({ok: false, error: "Not all children exist"})
+                    res.status(500).send({ok: false, error: "Not all children exist"})
                 }
             })
         } else {
-            res.send({'ok': false, 'error': "Category already exists"})
+            res.status(500).send({'ok': false, 'error': "Category already exists"})
         }
     })
 }
@@ -72,7 +72,7 @@ export let addCategory = (req: Request, res: Response) => {
 export let deleteCategory = (req: Request, res: Response) => {
     Category.deleteOne({id: req.params.categoryId}, (err: any) => {
         if (err){
-            res.send(err)
+            res.status(500).send(err)
         } else {
             res.send({'ok': true})
         }
@@ -84,7 +84,7 @@ export let deleteCategory = (req: Request, res: Response) => {
 export let updateCategory = (req: Request, res: Response) => {
     Category.findByIdAndUpdate(req.params.id, req.body, (err: any, category: any) => {
         if (err) {
-            res.send(err)
+            res.status(500).send(err)
         } else {
             res.send({'ok': true})
         }

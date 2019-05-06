@@ -1,6 +1,10 @@
 import * as mongoose from 'mongoose';
+let dotenv = require('dotenv');
+dotenv.config();
+const {mongoURI} = require('./config');
 
-const uri: string = 'mongodb://127.0.0.1:27017/local';
+
+const uri: string = mongoURI;//'mongodb://127.0.0.1:27017/local';//process.env.mongoURI;
 
 mongoose.connect(uri, {useNewUrlParser: true}, (err: any) => {
     if (err){

@@ -6,7 +6,7 @@ exports.allCategories = (req, res) => {
     let categories = category_1.default.find((err, categories) => {
         if (err) {
             console.log(err.message);
-            res.send(err);
+            res.status(500).send(err);
         }
         else {
             //console.log("Success")
@@ -19,7 +19,7 @@ exports.getCategory = (req, res) => {
     let category = category_1.default.find({ id: req.params.categoryId }, (err, category) => {
         if (err) {
             console.log(err.message);
-            res.send(err);
+            res.status(500).send(err);
         }
         else {
             //console.log("Success")
@@ -49,7 +49,7 @@ exports.addCategory = (req, res) => {
                 if (cIds.length === childrenCategories.length) {
                     category.save((err) => {
                         if (err) {
-                            res.send(err);
+                            res.status(500).send(err);
                         }
                         else {
                             //res.send(category)
@@ -58,12 +58,12 @@ exports.addCategory = (req, res) => {
                     });
                 }
                 else {
-                    res.send({ ok: false, error: "Not all children exist" });
+                    res.status(500).send({ ok: false, error: "Not all children exist" });
                 }
             });
         }
         else {
-            res.send({ 'ok': false, 'error': "Category already exists" });
+            res.status(500).send({ 'ok': false, 'error': "Category already exists" });
         }
     });
 };
@@ -71,7 +71,7 @@ exports.addCategory = (req, res) => {
 exports.deleteCategory = (req, res) => {
     category_1.default.deleteOne({ id: req.params.categoryId }, (err) => {
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
         }
         else {
             res.send({ 'ok': true });
@@ -83,7 +83,7 @@ exports.deleteCategory = (req, res) => {
 exports.updateCategory = (req, res) => {
     category_1.default.findByIdAndUpdate(req.params.id, req.body, (err, category) => {
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
         }
         else {
             res.send({ 'ok': true });
